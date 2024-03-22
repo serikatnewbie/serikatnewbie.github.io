@@ -9,115 +9,121 @@ summary: HTB CyberApocalypse 2024 Forensics writeup by k.eii (9/10)
 
 # 1. It Has Begun (_very easy_)
 
-> given file script.sh, just read the script
+Given file script.sh, just read the script
 
 ![image](https://hackmd.io/_uploads/Sk3fNKCa6.png)
 
-> tS_u0y_ll1w\{BTH >> HTB\{w1ll_y0u_St
+> tS_u0y_ll1w\{BTH HTB\{w1ll_y0u_St
 
 ![image](https://hackmd.io/_uploads/HywS4FAaT.png)
 
-> NG5kX3kwdVJfR3IwdU5kISF9 >> 4nd_y0uR_Gr0uNd!!}
+> NG5kX3kwdVJfR3IwdU5kISF9 4nd_y0uR_Gr0uNd!!}
 
 Flag: `HTB{w1ll_y0u_St4nd_y0uR_Gr0uNd!!}`
 
 # 2. An unusual sighting (_very easy_)
 
-> given file .zip and nc to answer questions
-> try to open the chall file, got bash history and log file
+Given file .zip and nc to answer questions. try to open the chall file, got bash history and log file
 
-> questions:
-> What is the IP Address and Port of the SSH Server (IP:PORT) :
-> 100.107.36.130:2221 (_sshd.log_)
+**questions:**
 
-> What time is the first successful Login:
-> 2024-02-13 11:29:50 (_sshd.log_)
->
-> What is the time of the unusual Login:
-> 2024-02-19 04:00:14 (_sshd.log, search for the login anomaly location_)
->
-> What is the Fingerprint of the attacker's public key:
-> OPkBSs6okUKraq8pYo4XwwBg55QSo210F09FCe1-yj4 (_sshd.log, look for SHA fingerprint_)
->
-> What is the first command the attacker executed after logging in:
-> whoami (_bash_history.txt, look for command executed after the anomaly login_)
->
-> What is the final command the attacker executed before logging out:
-> ./setup (_bash_history.txt, look for command executed before anomaly user logged out_)
+> What is the IP Address and Port of the SSH Server (IP:PORT) : \
+> **100.107.36.130:2221 (_sshd.log_)**
 
-flag given by nc: `HTB{B3sT_0f_luck_1n_th3_Fr4y!!}`
+> What time is the first successful Login: \
+> **2024-02-13 11:29:50 (_sshd.log_)**
+
+> What is the time of the unusual Login: \
+> **2024-02-19 04:00:14 (_sshd.log, search for the login anomaly location_)**
+
+> What is the Fingerprint of the attacker's public key: \
+> **OPkBSs6okUKraq8pYo4XwwBg55QSo210F09FCe1-yj4 (_sshd.log, look for SHA fingerprint_)**
+
+> What is the first command the attacker executed after logging in: \
+> **whoami (_bash_history.txt, look for command executed after the anomaly login_)**
+
+> What is the final command the attacker executed before logging out: \
+> **./setup (_bash_history.txt, look for command executed before anomaly user logged out_)**
+
+Flag: `HTB{B3sT_0f_luck_1n_th3_Fr4y!!}`
 
 # 3. Urgent (_very easy_)
 
-> given .eml file, analyze it
-> first, i will open it using notepad, when opening eml file as text, the content will be displayed as base64 so i check both the part and the important one lies on this content
+Given .eml file, analyze it. First, i will open it using notepad, when opening eml file as text, the content will be displayed as base64 so i check both the part and the important one lies on this content
 
 ![image](https://hackmd.io/_uploads/HJKMqgyRa.png)
 
-> i decoded it and got this javascript
+I decoded it and got this javascript
 
 ![image](https://hackmd.io/_uploads/S1zIDtA6T.png)
 
-> on the eml, we got url encoded javascript, decode it! (i'll use cyberchef)
+On the eml, we got url encoded javascript, decode it! (i'll use cyberchef), after decoding it we got vbscript, and the flag is hardcoded
 
 ![image](https://hackmd.io/_uploads/HyZiwtC6a.png)
-
-> after decoding it we got vbscript, and the flag is hardcoded
 
 Flag: `HTB{4n0th3r_d4y_4n0th3r_ph1shi1ng_4tt3mpT}`
 
 # 4. Pursue the Tracks (_easy_)
 
-> on this challenge, we also got the zip chall to be analyzed and nc to answer questions
-> on the zip file, we've got z.mft
-> .mft file (master file table) is a file that contains metadata of NTFS volume. we can analyze it using MFTECmd or MFTExplorer (https://ericzimmerman.github.io/#!index.md)
->
->     Files are related to two years, which are those? (for example: 1993,1995): 2023,2024
->
->     There are some documents, which is the name of the first file written? (for example: randomname.pdf): Final_Annual_Report.xlsx
->
->     Which file was deleted: Marketing_Plan.xlsx
->
->     How many of them is set to hidden mode: 1
->
->     filename of important txt file: credentials.txt
->
->     file that was copied: Financial_Statement_draft.xlsx
->
->     File modified: Project_Proposal.xlsx (there was many)
->
->     file located at record 45 (convert 45 to hex > 0x2D): Annual_Report.xlsx
->
->     file size located at record 40 (to hex > 0x28): 0xE000 = 57344
->
-> Flag: `HTB{p4rs1ng_mft_1s_v3ry_1mp0rt4nt_s0m3t1m3s}`
+On this challenge, we also got the zip chall to be analyzed and nc to answer questions
+on the zip file, we've got z.mft
+.mft file (master file table) is a file that contains metadata of NTFS volume. we can analyze it using MFTECmd or MFTExplorer (https://ericzimmerman.github.io/#!index.md)
+
+> Files are related to two years, which are those? (for example: 1993,1995): \
+> **2023,2024**
+
+> There are some documents, which is the name of the first file written? (for example: randomname.pdf): \
+> **Final_Annual_Report.xlsx**
+
+> Which file was deleted: \
+> **Marketing_Plan.xlsx**
+
+> How many of them is set to hidden mode: \
+> **1**
+
+> filename of important txt file: \
+> **credentials.txt**
+
+> file that was copied: \
+> **Financial_Statement_draft.xlsx**
+
+> File modified: \
+> Project_Proposal.xlsx (there was many)\*\*
+
+> file located at record 45 (convert 45 to hex 0x2D): \
+> **Annual_Report.xlsx**
+
+> file size located at record 40 (to hex 0x28): \
+> **0xE000 = 57344**
+
+Flag: `HTB{p4rs1ng_mft_1s_v3ry_1mp0rt4nt_s0m3t1m3s}`
 
 # 5. Data Siege (_medium_)
 
-> this is network traffic forensic. given capture.pcap as challenge file. read it using wireshark. the flag is splitted into 3 parts.
+This is network traffic forensic. given capture.pcap as challenge file. read it using wireshark. the flag is splitted into 3 parts.
 
 ![image](https://hackmd.io/_uploads/SkJZ6YRTp.png)
 
-> analyzing the capture, we come to conclusion that the user is trying to connect to a host with specific endpoint and downloaded some fishy executable from that site
+Analyzing the capture, we come to conclusion that the user is trying to connect to a host with specific endpoint and downloaded some fishy executable from that site
 
 ![image](https://hackmd.io/_uploads/SJ-ITtR6a.png)
 
-> assume that the executable is executed, the capture shows us that the computer make connection to some sketchy ip and port, if we follow it, we know that it was sending and receiving data from that ip
+Assume that the executable is executed, the capture shows us that the computer make connection to some sketchy ip and port, if we follow it, we know that it was sending and receiving data from that ip
 
 ![image](https://hackmd.io/_uploads/By_56YAa6.png)
 
-> on the bottom of the traffic data, we saw that the program executed powershell encoded command
+On the bottom of the traffic data, we saw that the program executed powershell encoded command
 
 ![image](https://hackmd.io/_uploads/BJM6TKC6a.png)
 
-> we gonna try to decode it as base64
+We gonna try to decode it as base64
 
 ![image](https://hackmd.io/_uploads/H1eyAKCpp.png)
 
-> the result is:
+The result is:
 
 ```python
-> action = New-ScheduledTaskAction -Execute "C:\Users\svc01\AppData\Roaming\4fva.exe"
+action = New-ScheduledTaskAction -Execute "C:\Users\svc01\AppData\Roaming\4fva.exe"
 
 $action = New-ScheduledTaskAction -Execute "C:\Users\svc01\AppData\Roaming\4fva.exe"
 
@@ -130,12 +136,12 @@ $settings = New-ScheduledTaskSettingsSet
 Register-ScheduledTask -TaskName "0r3d_1n_7h3_h34dqu4r73r5}" -Action $action -Trigger $trigger -Settings $settings
 ```
 
-> it contains the 3rd flag, i assume that the 2nd and 1st flag is on the same captured data. i try to decode it as base64 but didnt got anything so i assume it was encrypted that the encryption result is aes look alike.
-> so i will analyze the executable malware.
-> https://www.decompiler.com/jar/37f6dfe81be74027b3039e21612f3966/aQ4caZ.exe
-> aes encrypted using:
-> ![image](https://hackmd.io/_uploads/B108lcCTa.png)
-> make the decryptor based on that encryption algorithm
+It contains the 3rd flag, i assume that the 2nd and 1st flag is on the same captured data. i try to decode it as base64 but didnt got anything so i assume it was encrypted that the encryption result is aes look alike.
+so i will analyze the executable malware.
+https://www.decompiler.com/jar/37f6dfe81be74027b3039e21612f3966/aQ4caZ.exe
+AES encrypted using:
+![image](https://hackmd.io/_uploads/B108lcCTa.png)
+make the decryptor based on that encryption algorithm
 
 ```python
 from Crypto.Protocol.KDF import PBKDF2
@@ -163,31 +169,31 @@ cipher_text = "encrypted capture here"
 print(decrypt(cipher_text))
 ```
 
-> 2nd flag part: \_h45_b33n_r357
-> 1st flag part: HTB\{c0mmun1c4710n5
+2nd flag part: \_h45_b33n_r357
+1st flag part: HTB\{c0mmun1c4710n5
 
 Flag: `HTB{c0mmun1c4710n5_h45_b33n_r3570r3d_1n_7h3_h34dqu4r73r5}`
 
 # 6. Phreaky _(medium)_
 
-> we are given phreaky.pcap, again, analyze the network traffic
-> when analyzing the traffic, i notice that the packet shows us that the computer is trying to download something from ubuntu server
+We are given phreaky.pcap, again, analyze the network traffic
+when analyzing the traffic, i notice that the packet shows us that the computer is trying to download something from ubuntu server
 
 ![image](https://hackmd.io/_uploads/Hy4gGc0pp.png)
 
-> but because i cant found out how to extract the downloaded file, i switch to another software (NetworkMiner)
+But because i cant found out how to extract the downloaded file, i switch to another software (NetworkMiner)
 
 ![image](https://hackmd.io/_uploads/SJLHMqAa6.png)
 
-> voila! got this many files.
+Voila! got this many files.
 
 ![image](https://hackmd.io/_uploads/ryXOzqRap.png)
 
-> notices it that the files is part files with different password and i try to extract it. when extracting the files, i try to open the part file and realize that the file contains PDF header
+Notices it that the files is part files with different password and i try to extract it. when extracting the files, i try to open the part file and realize that the file contains PDF header
 
 ![image](https://hackmd.io/_uploads/Bk8RJy1C6.png)
 
-> so i try to append it as pdf using this script:
+So i try to append it as pdf using this script:
 
 ```python
 def unify_part_files(part_files, output_file):
@@ -209,29 +215,29 @@ output_file = 'phreaks_plan.pdf'
 unify_part_files(part_files, output_file)
 ```
 
-opening the pdf gave me the flag
+Opening the pdf gave me the flag
 Flag: `HTB{Th3Phr3aksReadyT0Att4ck}`
 
 # 7. Fake Boost _(easy)_
 
 ![image](https://hackmd.io/_uploads/Sy5jQqRaT.png)
 
-> opening the given zip file, i got these 3 files. i try to open it using notepad and realize its just an obfuscated powershell script.
+Opening the given zip file, i got these 3 files. i try to open it using notepad and realize its just an obfuscated powershell script.
 
 ![image](https://hackmd.io/_uploads/HJVmV9ATT.png)
 
-> i try to decode the strings using base64 but it didnt work so i try to analyze the script and notices that the string is being reversed
+I try to decode the strings using base64 but it didnt work so i try to analyze the script and notices that the string is being reversed
 
 ![image](https://hackmd.io/_uploads/r19IN9CT6.png)
 
-> after reversing it, i decoded it as base64
-> analyzing the result i notice it was encrypting data and the result is written in the another random string named file
+After reversing it, i decoded it as base64
+analyzing the result i notice it was encrypting data and the result is written in the another random string named file
 
 ![image](https://hackmd.io/_uploads/HJ1wKgyCp.png)
 
 ![image](https://hackmd.io/_uploads/SJDnEcRap.png)
 
-> using the aes key written in the program i'll decode the encrypted string
+Using the aes key written in the program i'll decode the encrypted string
 
 ```python
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -256,7 +262,7 @@ decrypted_data = decrypt_string(AES_KEY, encrypted_data)
 print(decrypted_data)
 ```
 
-> Result:
+Result:
 
 ```basic
 [
@@ -286,10 +292,10 @@ print(decrypted_data)
     }
 ```
 
-> the email is base64 encoded flag: b3W4r3_0f_T00_g00d_2_b3_7ru3_0ff3r5}
-> it seems to be the 2nd part, and i notice that i miss this one
-> ![image](https://hackmd.io/_uploads/BJ3LvcC6p.png)
-> so the flag will be
+The email is base64 encoded flag: b3W4r3_0f_T00_g00d_2_b3_7ru3_0ff3r5}
+it seems to be the 2nd part, and i notice that i miss this one
+
+![image](https://hackmd.io/_uploads/BJ3LvcC6p.png)
 
 Flag: `HTB{fr33_N17r0G3n_3xp053d!_b3W4r3_0f_T00_g00d_2_b3_7ru3_0ff3r5}`
 
@@ -297,15 +303,14 @@ Flag: `HTB{fr33_N17r0G3n_3xp053d!_b3W4r3_0f_T00_g00d_2_b3_7ru3_0ff3r5}`
 
 ![image](https://hackmd.io/_uploads/rkxTD9RTa.png)
 
-> hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-> need to turn off the windef lol
+> hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm need to turn off the windef lol
 
 ![image](https://hackmd.io/_uploads/BJWWd9R66.png)
 
 > _noice_
 
-> given .docm file, i directly know that we will be checking at the macro of this doc file
-> extracted it using oletools, and got this vb
+Given .docm file, i directly know that we will be checking at the macro of this doc file
+extracted it using oletools, and got this vb
 
 ```basic
 Public IAiiymixt As String
@@ -337,7 +342,7 @@ Dim chkDomain As String
 Dim strUserDomain As String
 chkDomain = "GAMEMASTERS.local"
 strUserDomain = Environ$("UserDomain")
-If chkDomain <> strUserDomain Then
+If chkDomain <strUserDomain Then
 
 Else
 
@@ -397,8 +402,8 @@ End If
 End Sub
 ```
 
-> the vb will generate mailform.js and encrypt it. but because of me being suck at re and i dont know why my office word wont generate the mailform.js, my teammate FlaB helped me solve this chall
-> after successfully generating the mailform.js (he said he used excel macro), we try to decrypt the js file
+The vb will generate mailform.js and encrypt it. but because of me being suck at re and i dont know why my office word wont generate the mailform.js, my teammate FlaB helped me solve this chall
+after successfully generating the mailform.js (he said he used excel macro), we try to decrypt the js file
 
 ```basic
 Function xorring(given_string() As Byte, length As Long) As Boolean
@@ -475,59 +480,51 @@ exit_label:
 End Sub
 ```
 
-`flag: HTB{m4ld0cs_4r3_g3tt1ng_Tr1cki13r}`
+Flag: `HTB{m4ld0cs_4r3_g3tt1ng_Tr1cki13r}`
 
 # 9. Confinement _(hard)_
 
 > lol, i love this chall, its pretty cool
-> given Confinement.ad1 file, try to analyze it using FTKImager and ArtiFast
-> the chall description says that we need to recover some specific document located at \Documents\Work
-> the document is encrypted by some ransomware created by HTB so we cant find some public decryption tools.
->
-> using PECmd, im parsing all of the prefetch files (prefetch file is something that generated when you executed a program)
+
+Given Confinement.ad1 file, try to analyze it using FTKImager and ArtiFast
+the chall description says that we need to recover some specific document located at \Documents\Work
+the document is encrypted by some ransomware created by HTB so we cant find some public decryption tools.
+
+Using PECmd, im parsing all of the prefetch files (prefetch file is something that generated when you executed a program)
 
 ![image](https://hackmd.io/_uploads/HkzDiqCap.png)
 
-> from the result of prefetch analyze, i notices that the ransomware is INTEL.exe because it loaded all of the encrypted documents
->
-> i mount the .ad1 file using FTKImager and try to find the executable, but, man, i can't find it anywhere.
->
-> i come to an idea to check all of the Windows Event Log (evtx files) to check what just happend on the PC.
->
-> So i used EvtxCmd (Eric Zimmerman Tools) to dump all of the evtx file as csv.
-> Using timeline explorer (Eric Zimmerman Tools) i found out it was quarantined by Windows Defender (lol)
+From the result of prefetch analyze, i notices that the ransomware is INTEL.exe because it loaded all of the encrypted documents i mount the .ad1 file using FTKImager and try to find the executable, but, man, i can't find it anywhere. i come to an idea to check all of the Windows Event Log (evtx files) to check what just happend on the PC. So i used EvtxCmd (Eric Zimmerman Tools) to dump all of the evtx file as csv. Using timeline explorer (Eric Zimmerman Tools) i found out it was quarantined by Windows Defender (lol)
 
 ![image](https://hackmd.io/_uploads/r17S35RTT.png)
 
-> i check out the WinDef Directory in ProgramData/Microsoft/WindowsDefender/Quarantine/ResourceData, and found the malware artifact
+I check out the WinDef Directory in ProgramData/Microsoft/WindowsDefender/Quarantine/ResourceData, and found the malware artifact
 
 ![image](https://hackmd.io/_uploads/Skdjn9Cpp.png)
 
-> but it was encrypted by Windows Defender.
-> https://blog.fox-it.com/2023/12/14/reverse-reveal-recover-windows-defender-quarantine-forensics/
+But it was encrypted by Windows Defender. (https://blog.fox-it.com/2023/12/14/reverse-reveal-recover-windows-defender-quarantine-forensics/)
 
-> from the documentation above, we know it was encrypted using RC4 and the key is hardcoded in mpengine.dll
-> https://github.com/brad-sp/cuckoo-modified/commit/61087cae2e40c8b26f94162c652b4bc48256264b
+From the documentation above, we know it was encrypted using RC4 and the key is hardcoded in mpengine.dll (https://github.com/brad-sp/cuckoo-modified/commit/61087cae2e40c8b26f94162c652b4bc48256264b)
 
-> and walaaa, we can recover the malware sample.
-> after that, we will analyze the malware and how the encryption proccess works so we can make the decryptor
+And walaaa, we can recover the malware sample.
+after that, we will analyze the malware and how the encryption proccess works so we can make the decryptor
 
-> https://www.decompiler.com/jar/2f3b011d0fdd4023b87eb2aa02324cb1/test.exe
-> decompiled using decompiler.com
+https://www.decompiler.com/jar/2f3b011d0fdd4023b87eb2aa02324cb1/test.exe
+decompiled using decompiler.com
 
 ![image](https://hackmd.io/_uploads/ry9V0cCp6.png)
 
-> the password is generated using this function, taking salt from Program.cs
+The password is generated using this function, taking salt from Program.cs
 
 ![image](https://hackmd.io/_uploads/HkkDA5CpT.png)
 
-> used salt taken from:
+Used salt taken from:
 
 ![image](https://hackmd.io/_uploads/rk9qri0pp.png)
 
-> the file encrypt using AES and different key for each unique ID, the salt is hardcoded so we can try to create the key generator for each UIDs and make decyptor from that
+The file encrypt using AES and different key for each unique ID, the salt is hardcoded so we can try to create the key generator for each UIDs and make decyptor from that
 
-> key/password generator for UIDs:
+key/password generator for UIDs:
 
 ```python
 import hashlib
@@ -561,12 +558,13 @@ if __name__ == "__main__":
 
 ```
 
-> the UID used is at the ultimatum.hta file:
->
-> <div class='footer'>Faction ID = <span>5K7X7E6X7V2D6F</span></div>
-> the password/key would be: A/b2e5CdOYWbfxqJxQ/Y4Xl4yj5gYqDoN0JQBIWAq5tCRPLlprP2GC87OXq92v1KhCIBTMLMKcfCuWo+kJdnPA==
+The UID used is at the ultimatum.hta file: \
+`<div class='footer'Faction ID = <span5K7X7E6X7V2D6F</span</div`
 
-> decryptor:
+The password/key would be: \
+A/b2e5CdOYWbfxqJxQ/Y4Xl4yj5gYqDoN0JQBIWAq5tCRPLlprP2GC87OXq92v1KhCIBTMLMKcfCuWo+kJdnPA==
+
+decryptor:
 
 ```csharp
 using System;
@@ -600,11 +598,11 @@ public class Program
             do
             {
                 bytesRead = cryptoStream.Read(array, 0, array.Length);
-                if (bytesRead > 0)
+                if (bytesRead 0)
                 {
                     decryptedFileStream.Write(array, 0, bytesRead);
                 }
-            } while (bytesRead > 0);
+            } while (bytesRead 0);
 
             cryptoStream.Close();
             encryptedFileStream.Close();
@@ -628,6 +626,6 @@ public class Program
 }
 ```
 
-flag: `HTB{2_f34r_1s_4_ch01ce_322720914448bf9831435690c5835634}`
+Flag: `HTB{2_f34r_1s_4_ch01ce_322720914448bf9831435690c5835634}`
 
 **chall archive:** https://github.com/jonscafe/cyberapocalypse2024/tree/main
