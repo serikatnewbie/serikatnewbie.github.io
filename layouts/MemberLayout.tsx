@@ -11,6 +11,7 @@ const specialtyColors = {
   Forensics: 'pink',
   Misc: 'amber',
   OSINT: 'gray',
+  Blockchain: 'cyan',
 }
 
 const keepClasses = (
