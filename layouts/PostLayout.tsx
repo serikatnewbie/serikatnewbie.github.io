@@ -78,7 +78,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                           className="w-10 h-10 rounded-full"
                         />
                       )}
-                      <dl className="text-sm font-medium leading-5 whitespace-nowrap">
+                      <dl className="text-sm font-medium leading-5 whitespace-normal">
                         <dt className="sr-only">Name</dt>
                         <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
                         <dt className="sr-only">Twitter</dt>
