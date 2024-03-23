@@ -7,4 +7,4 @@ description: 'Master of web exploitation with extensive penetration testing expe
 order: 4
 ---
 
-Master of web exploitation with extensive penetration testing experience. Lets go to Berlin!!
+Top 1 Bug Bounty Program Gojek 2022. Lets go to Berlin!!

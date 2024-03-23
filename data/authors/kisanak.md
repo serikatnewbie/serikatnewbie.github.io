@@ -7,4 +7,4 @@ description: 'Dedicated cryptography enthusiast with a background in mathematics
 order: 12
 ---
 
-Dedicated cryptography enthusiast with a background in mathematics.
+Cryptographer on the Haha hoho awikwok Pisan Team

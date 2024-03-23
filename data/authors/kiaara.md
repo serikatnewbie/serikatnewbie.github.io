@@ -1,5 +1,5 @@
 ---
-name: kiaara
+name: Kiaara
 avatar: /static/images/avatar/player11.webp
 specialties: [Crypto]
 member: true
@@ -7,4 +7,4 @@ description: 'Passionate cryptographer dedicated to advancing cybersecurity thro
 order: 11
 ---
 
-Passionate cryptographer dedicated to advancing cybersecurity through research.
+Cryptographer on the CP Enjoyer Team

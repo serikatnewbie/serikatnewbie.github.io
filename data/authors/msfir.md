@@ -7,4 +7,4 @@ description: 'Seasoned cybersecurity professional excelling in PWN challenges an
 order: 8
 ---
 
-Seasoned cybersecurity professional excelling in PWN challenges and reverse engineering.
+Hard Carry SHA-587

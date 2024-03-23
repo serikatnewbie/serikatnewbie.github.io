@@ -7,4 +7,4 @@ description: 'Cryptographer extraordinaire, continuously exploring new encryptio
 order: 5
 ---
 
-Cryptographer extraordinaire, continuously exploring new encryption techniques.
+幸せ

@@ -7,4 +7,4 @@ description: 'Versatile cybersecurity enthusiast specializing in PWN challenges 
 order: 7
 ---
 
-Versatile cybersecurity enthusiast specializing in PWN challenges and digital forensics.
+Officially Engaged with Mizuhara Chizuru

@@ -7,4 +7,4 @@ description: 'Versatile cybersecurity enthusiast specializing in PWN challenges 
 order: 6
 ---
 
-Versatile cybersecurity enthusiast specializing in PWN challenges and digital forensics.
+Pwn and Forensic player at CP Enjoyer
