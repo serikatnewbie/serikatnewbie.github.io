@@ -2,7 +2,7 @@
 title: nullcon HackIM CTF 2024, Berlin
 date: '2024-03-22'
 draft: false
-authors: ['SNI']
+authors: ['']
 tags: ['Writeups']
 summary: nullcon HackIM CTF 2024, Berlin Writeup.
 ---
@@ -89,7 +89,7 @@ To view the source code, click here.
 
 Theory: https://stackoverflow.com/questions/12598407/why-does-php-convert-a-string-with-the-letter-e-into-a-number
 
-> Other answers have already mentioned this, but the PHP manual has explicitly stated it now. PHP interprets any string containing an 'E' bounded by numbers as scientific notation (EXPONENT_DNUM: ({LNUM} {DNUM}) [eE][+-]?{LNUM}). As you can see, this interpretation is case-insensitive (E or e). Where this becomes a `gotcha` in weak type string comparisons var_dump("2E1" == "020"); // true 2E1 is really 2 _ (10 ^ 1), and that works out to 20. Insert any other letter there and it will return the expected false. From the question "608E-4234" == "272E-3063" That works out to 608 _ (10 ^ -4234) == 272 \* (10 ^ -3063) Neither number can be represented by PHP (as JvdBerg noted), so they are converted to 0
+> Other answers have already mentioned this, but the PHP manual has explicitly stated it now. PHP interprets any string containing an 'E' bounded by numbers as scientific notation (EXPONENT*DNUM: ({LNUM} {DNUM}) [eE][+-]?{LNUM}). As you can see, this interpretation is case-insensitive (E or e). Where this becomes a `gotcha` in weak type string comparisons var_dump("2E1" == "020"); // true 2E1 is really 2 * (10 ^ 1), and that works out to 20. Insert any other letter there and it will return the expected false. From the question "608E-4234" == "272E-3063" That works out to 608 \_ (10 ^ -4234) == 272 \* (10 ^ -3063) Neither number can be represented by PHP (as JvdBerg noted), so they are converted to 0
 
 ### ![chall-sc](https://hackmd.io/_uploads/SJ83Ci8R6.png)
 
