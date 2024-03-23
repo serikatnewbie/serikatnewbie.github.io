@@ -37,21 +37,21 @@ export default function Home({ posts, members }: InferGetStaticPropsType<typeof 
             // viewBox="0 0 509 202"
             className="mx-auto mb-8"
             style={{ width: 'clamp(35%, 400px, calc(100% - 20px))' }}
-            alt="Project SEKAI"
+            alt="SNI"
           />
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Project SEKAI
+            Serikat Newbie Indonesia
           </h1>
           <h2 className="text-xl leading-9 tracking-tight text-gray-500 dark:text-gray-400 sm:text-2xl sm:leading-10 md:text-2xl md:leading-14">
-            Yet another CTF team
+            Ora CTF, yo sakau
           </h2>
         </div>
         <div className="pt-8 pb-8 space-y-2 md:space-y-5">
           <p className="text-lg leading-7 text-center text-gray-500 dark:text-gray-400">
             <code
-              aria-label={`Project SEKAI is a CTF team with over ${currentMembers} members and has participated in over ${contestsData.length} contests.`}
+              aria-label={`Serikat Newbie Indonesia [SNI] is a CTF team with ${currentMembers} active members, and activeley played in weekend ctfs.`}
             >
-              {`SEKAI{I5_\u200BA_\u200BCTF_\u200Bt3Am_\u200Bw/_\u200B${currentMembers}+_\u200BmbRs_\u200B&_\u200Bp4r71CiP4tEd_\u200Bin_\u200B${contestsData.length}+_\u200Bc0nt3Stz}`}
+              {/* {`SEKAI{I5_\u200BA_\u200BCTF_\u200Bt3Am_\u200Bw/_\u200B${currentMembers}+_\u200BmbRs_\u200B&_\u200Bp4r71CiP4tEd_\u200Bin_\u200B${contestsData.length}+_\u200Bc0nt3Stz}`} */}
             </code>
           </p>
         </div>
