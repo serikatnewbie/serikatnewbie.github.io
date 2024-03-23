@@ -6,22 +6,6 @@ authors: ['itoid', 'zran']
 tags: ['Pwn', 'htb-cyberapocalypse-2024']
 summary: HTB CyberApocalypse 2024 Pwn writeup by itoid & zran (9/10)
 ---
-<style>
-img[alt=chall-sc] {
-  display: block;
-  margin: 0 auto;
-  width: 100em; 
-}
-
-p {
-  text-align: justify;
-}
-
-p::first-line {
-  text-indent: 0;
-}
-
-</style>
 
 # 1. Tutorial (_very easy_)
 
@@ -46,7 +30,7 @@ io.sendlineafter(b'>> ', b'1337')
 io.interactive()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/HyFlqGJRT.png)
+![image](https://hackmd.io/_uploads/HyFlqGJRT.png)
 
 Flag: `HTB{gg_3z_th4nk5_f0r_th3_tut0r14l}`
 
@@ -54,9 +38,9 @@ Flag: `HTB{gg_3z_th4nk5_f0r_th3_tut0r14l}`
 
 There is a format string vulnerability in printf((const char \*)buf). We just need to overwrite v4[0] from 0x1337BABE to 0x1337BEEF by performing a two-byte overwrite. This will allow us to call the delulu() function and obtain the flag
 
-![chall-sc](https://hackmd.io/_uploads/H1l6JdbA6.png)
+![image](https://hackmd.io/_uploads/H1l6JdbA6.png)
 
-![chall-sc](https://hackmd.io/_uploads/HJZyhmJRa.png)
+![image](https://hackmd.io/_uploads/HJZyhmJRa.png)
 
 ```python
 from pwn import *
@@ -71,7 +55,7 @@ io.sendline('%{}x%7$hn'.format(str(0x1337BEEF & 0xFFFF)).encode())
 io.interactive()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/HJG-nG1AT.png)
+![image](https://hackmd.io/_uploads/HJG-nG1AT.png)
 
 Flag: `HTB{m45t3r_0f_d3c3pt10n}`
 
@@ -79,9 +63,9 @@ Flag: `HTB{m45t3r_0f_d3c3pt10n}`
 
 There is a one-byte overflow vulnerability on read(0, buf, 7uLL), and we can bypass strcmp(buf, s2) with a null byte because the strcmp() function stops at a null byte. Hence, by sending 7 null bytes, we can cause strcmp() to evaluate as true and call the open_door() function, which displays the flag on the screen
 
-![chall-sc](https://hackmd.io/_uploads/rkkIhmyC6.png)
+![image](https://hackmd.io/_uploads/rkkIhmyC6.png)
 
-![chall-sc](https://hackmd.io/_uploads/Bkyw3XkCT.png)
+![image](https://hackmd.io/_uploads/Bkyw3XkCT.png)
 
 ```python
 from pwn import *
@@ -96,7 +80,7 @@ io.sendline(b'\0' * 0x7)
 io.interactive()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/Hkhppf1RT.png)
+![image](https://hackmd.io/_uploads/Hkhppf1RT.png)
 
 Flag: `HTB{3v3ryth1ng_15_r34d4bl3}`
 
@@ -104,11 +88,11 @@ Flag: `HTB{3v3ryth1ng_15_r34d4bl3}`
 
 There is a buffer overflow vulnerability on read(0, buf, 256uLL)
 
-![chall-sc](https://hackmd.io/_uploads/Skuypm1Ap.png)
+![image](https://hackmd.io/_uploads/Skuypm1Ap.png)
 
 I used ret2csu to leak the libc's write address. Then, I constructed a ROP chain to achieve arbitrary code execution
 
-![chall-sc](https://hackmd.io/_uploads/H1GuVdW06.png)
+![image](https://hackmd.io/_uploads/H1GuVdW06.png)
 
 ```python
 from pwn import *
@@ -170,7 +154,7 @@ sl(p)
 com()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/Bk2xJ71Cp.png)
+![image](https://hackmd.io/_uploads/Bk2xJ71Cp.png)
 
 Flag: `HTB{c0nf1gur3_w3r_d0g}`
 
@@ -178,9 +162,9 @@ Flag: `HTB{c0nf1gur3_w3r_d0g}`
 
 There is a buffer overflow vulnerability in read(0, buf, 0x66uLL). Additionally, there is a function named fill_ammo() that displays the flag on the screen if the Destination Index Register, Source Index Register, and Data Register meet the requirements based on the code when we call the fill_ammo() function. Therefore, we just need to create a ROP chain to exploit this vulnerability
 
-![chall-sc](https://hackmd.io/_uploads/SJwU6myCT.png)
+![image](https://hackmd.io/_uploads/SJwU6myCT.png)
 
-![chall-sc](https://hackmd.io/_uploads/r1HBBObAp.png)
+![image](https://hackmd.io/_uploads/r1HBBObAp.png)
 
 ```python
 from pwn import *
@@ -222,7 +206,7 @@ sla(b'>> ', p)
 com()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/rkse-m1A6.png)
+![image](https://hackmd.io/_uploads/rkse-m1A6.png)
 
 Flag: `HTB{b00m_b00m_r0ck3t_2_th3_m00n}`
 
@@ -230,11 +214,11 @@ Flag: `HTB{b00m_b00m_r0ck3t_2_th3_m00n}`
 
 > There is a buffer overflow vulnerability upon calling the function gets(v4, argv)
 
-![chall-sc](https://hackmd.io/_uploads/Skdp6XkCa.png)
+![image](https://hackmd.io/_uploads/Skdp6XkCa.png)
 
 The Executable and Linkable Format (ELF) also has the system function in its Procedure Linkage Table. Based on my observation, our input will be stored in the Accumulator Register. Therefore, I input the string "/bin/sh\0" and then use the instruction mov rdi, rax, so it calls system("/bin/sh"), allowing us to achieve arbitrary code execution
 
-![chall-sc](https://hackmd.io/_uploads/HyjT8uW0a.png)
+![image](https://hackmd.io/_uploads/HyjT8uW0a.png)
 
 ```python
 from pwn import *
@@ -269,7 +253,7 @@ sla(b'>> ', p)
 com()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/rJCvXQ1Ra.png)
+![image](https://hackmd.io/_uploads/rJCvXQ1Ra.png)
 
 Flag: `HTB{n0_n33d_4_l34k5_wh3n_u_h4v3_5y5t3m}`
 
@@ -277,21 +261,21 @@ Flag: `HTB{n0_n33d_4_l34k5_wh3n_u_h4v3_5y5t3m}`
 
 Given a fully mitigated Executable and Linkable Format (ELF), there is an 'add' function that allows us to add data to an index, a 'show' function to display the data at an index, and a 'delete' function to remove previously stored data at an index
 
-![chall-sc](https://hackmd.io/_uploads/SJSCuu-Cp.png)
+![image](https://hackmd.io/_uploads/SJSCuu-Cp.png)
 
-![chall-sc](https://hackmd.io/_uploads/BkhkTPZCp.png)
+![image](https://hackmd.io/_uploads/BkhkTPZCp.png)
 
-![chall-sc](https://hackmd.io/_uploads/S1OZTDZ0T.png)
+![image](https://hackmd.io/_uploads/S1OZTDZ0T.png)
 
-![chall-sc](https://hackmd.io/_uploads/S1cfpwZCa.png)
+![image](https://hackmd.io/_uploads/S1cfpwZCa.png)
 
 There is a use-after-free vulnerability where free(_(void \*\*)(8LL _ num + a1)) can result in the reuse of a previously released block of memory
 
-![chall-sc](https://hackmd.io/_uploads/SymETw-Aa.png)
+![image](https://hackmd.io/_uploads/SymETw-Aa.png)
 
 On the \_ function, there is v2 = (void (\_\_fastcall _)(\_QWORD))strtoull(_(const char \*_)a1, 0LL, 16) that converts our hexadecimal string to an unsigned long, and then calls v2(_(\_QWORD \*)(a1 + 8)). We can overwrite v2 to system and a1 + 8 to the string "/bin/sh", resulting in system("/bin/sh") and allowing us to achieve arbitrary code execution
 
-![chall-sc](https://hackmd.io/_uploads/ryZDTvW06.png)
+![image](https://hackmd.io/_uploads/ryZDTvW06.png)
 
 ```python
 from pwn import *
@@ -397,6 +381,6 @@ exit()
 com()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/rJVtsPWRp.png)
+![image](https://hackmd.io/_uploads/rJVtsPWRp.png)
 
 Flag: `HTB{0m43_w4_m0u_5h1nd31ru~uWu}`
