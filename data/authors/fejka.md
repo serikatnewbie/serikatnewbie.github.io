@@ -7,4 +7,4 @@ description: 'Proficient Web Pentester with a strategic approach to penetration 
 order: 9
 ---
 
-Proficient Web Pentester with a strategic approach to penetration testing.
+Web Exploiter on the Haha hoho awikwok Pisan Team
