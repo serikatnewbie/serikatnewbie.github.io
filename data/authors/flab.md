@@ -7,4 +7,4 @@ description: Addicted to reverse engineering and cryptography.
 order: 3
 ---
 
-Addicted to reverse engineering and cryptography.
+Hard Carry Ajarin Dong Puh Sepuh
