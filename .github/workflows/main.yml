@@ -71,7 +71,7 @@ jobs:
       - name: List directory contents
         run: ls
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v2
         with:
           path: out
 
