@@ -7,4 +7,4 @@ description: 'Adept web exploitation expert passionate about cybersecurity educa
 order: 10
 ---
 
-Adept web exploitation expert passionate about cybersecurity education.
+Web Exploiter from CCUG
