@@ -67,11 +67,11 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build project assets
-        run: npx next build
+        run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: .next
+          path: out
 
   # Deployment job
   deploy:
