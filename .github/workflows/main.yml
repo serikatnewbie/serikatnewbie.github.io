@@ -69,7 +69,7 @@ jobs:
       - name: Build project assets
         run: npx next build
       - name: List directory contents
-        run: ls -l ./out
+        run: ls
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
