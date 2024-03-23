@@ -344,11 +344,11 @@ We were given a website where we can execute a bash command on the following inp
 
 ### ![images](https://hackmd.io/_uploads/SkC2Fk806.png)
 
-We can also see the source code of the website and it uses php. Long story short, our bash command input will be checked whether it matches what is in the $THE_SCRIPT variable or not. If it is different, then the command we give will not be executed.
+We can also see the source code of the website and it uses php. Long story short, our bash command input will be checked whether it matches what is in the `$THE_SCRIPT` variable or not. If it is different, then the command we give will not be executed.
 
 ![images](https://hackmd.io/_uploads/H11apkIRT.png)
 
-We discovered something interesting, the bash command we input is not directly compared to the $THE_SCRIPT variable. Instead, it's captured using a hardcopy screen. Subsequently, the web application uses the trim function to extract the text that will be compared with $THE_SCRIPT. We can exploit this behavior to launch a CLRF (Carriage Return Line Feed) attack.
+We discovered something interesting, the bash command we input is not directly compared to the `$THE_SCRIPT` variable. Instead, it's captured using a hardcopy screen. Subsequently, the web application uses the trim function to extract the text that will be compared with `$THE_SCRIPT`. We can exploit this behavior to launch a CLRF (Carriage Return Line Feed) attack.
 
 ![images](https://hackmd.io/_uploads/H1y3xxU0a.png)
 
