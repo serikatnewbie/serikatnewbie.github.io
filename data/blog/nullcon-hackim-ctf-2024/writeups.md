@@ -2,7 +2,7 @@
 title: nullcon HackIM CTF 2024, Berlin
 date: '2024-03-22'
 draft: false
-tags: ['Web', 'Pwn', 'Misc', 'Crypto']
+tags: ['Web', 'Pwn', 'Misc', 'Crypto', 'nullcon-hackim-ctf-2024']
 summary: nullcon HackIM CTF 2024, Berlin Writeup.
 ---
 
@@ -157,8 +157,7 @@ Flag: `ENO{OH_TH4T_W4S_T00_EAZZ1}`
 
 > Because @gehaxelt loves Falafel so much, I built a website for him ;) Hurry up though, the contest is not gonna last forever. \
 > **Author:** @moaath \
-> **Connection: 52**.59.124.14:5010\*\*
-> **Attachment:** source.zip
+> **Connection: 52**.59.124.14:5010\*\* > **Attachment:** source.zip
 
 ```php
 <?php
@@ -207,8 +206,7 @@ Flag: `ENO{D0N'T_ST0R3_F1L3S_B3F0R3_VAL1DAT1NG_TH3M}`
 
 > It looks like our page had a bug :( We did fix it tho! And we even added a little treat for you guys! (But dont tell @gehaxelt about our secret) \
 > **Author:** @moaath,@layton \
-> **Connection: 52**.59.124.14:5012\*\*
-> **Attachment:** docker-compose.yml, shop.zip
+> **Connection: 52**.59.124.14:5012\*\* > **Attachment:** docker-compose.yml, shop.zip
 
 ````php
 
@@ -372,8 +370,7 @@ Flag: `ENO{BEWARE_OF_TERM1N4L_3SCAPE_SEQUENCES!}`
 
 > Since I hate format exploits challenges I decided to not only do one but three hehe. This is challenge one of the series. \
 > **Author:** @moaath \
-> **Connection: 52**.59.124.14:5030\*\*
-> **Attachment:** baby_formatter
+> **Connection: 52**.59.124.14:5030\*\* > **Attachment:** baby_formatter
 
 In this challenge, we were given a binary named `baby_formatter`. First, let's see what mitigations the binary file has.
 
@@ -450,8 +447,7 @@ Flag: `ENO{W3LL_THAT_WA5_AN_3A5Y_0N3_1_GU355}`
 
 > Since I hate format exploits challenges I decided to not only do one but three hehe. This is challenge two of the series. \
 > **Author:** @moaath \
-> **Connection: 52**.59.124.14:5031\*\*
-> **Attachment:** junior_formatter, Dockerfile
+> **Connection: 52**.59.124.14:5031\*\* > **Attachment:** junior_formatter, Dockerfile
 
 In this challenge, we were given a binary named `junior_formatter` and a Dockerfile that states the binary is built using Ubuntu 22:04. From this information, we can conclude that the glibc version is glibc version 2.35. Now, let's analyze the mitigations present in the binary file.
 
@@ -592,8 +588,7 @@ Flag: `ENO{N1C3_Y0U_G0T_TH15_0N3_T00_G00D_J0B!}`
 
 > We love C and we love games. So we decided to implement a simple game to test our C knowledge! Go and have a look at the coolest Hangman game ever made! \
 > **Authors:** @anajana, @moaath
-> **Connection: 52**.59.124.14:5029\*\*
-> **Attachment:** hangman, Dockerfile
+> **Connection: 52**.59.124.14:5029\*\* > **Attachment:** hangman, Dockerfile
 
 In this challenge, we were given a binary named `hangman` along with a `Dockerfile`. First, let's see what mitigations the binary file has.
 
@@ -880,8 +875,7 @@ Flag: `ENO{HANG_0N_T3HR3_B0DY_1T5_0NLY_0FF_BY_0N3_3RR0R_W1TH_S0M3_LUCK!}`
 
 > Since I hate format exploits challenges I decided to not only do one but three hehe. This is challenge three of the series. \
 > **Author:** @moaath \
-> **Connection: 52**.59.124.14:5032\*\*
-> **Attachment:** senior_formatter, Dockerfile
+> **Connection: 52**.59.124.14:5032\*\* > **Attachment:** senior_formatter, Dockerfile
 
 In this challenge, we were given a binary named `senior_formatter` and a Dockerfile that states the binary is built using Ubuntu 22:04. From this information, we can conclude that the glibc version is glibc version 2.35. Now, let's analyze the mitigations present in the binary file.
 
@@ -1104,8 +1098,7 @@ Flag: `ENO{WA1T_WHAT_H0W_D1D_Y0U_F1ND_M3???}`
 > Missing cat \
 > Where is my cat? \
 > **Author:** @gehaxelt \
-> **Connection: 52**.59.124.14:5001\*\*
-> **Attachment:** chall.py
+> **Connection: 52**.59.124.14:5001\*\* > **Attachment:** chall.py
 
 Given a challenge with the following source:
 ![images](https://hackmd.io/_uploads/ryOgBxUA6.png)
@@ -1541,8 +1534,7 @@ Flag: `ENO{H0p3fully_Y0ur_M1ND_D1D_G3t_scr3w3D}`
 > What can be better than a Crypto challenge? (kinda anything 101) \
 > A Crypto challenge written in Rust! its double the fun ;) \
 > **Author:** @layton, @anajana, @moaath \
-> **Connection: 52**.59.124.14:5024\*\*
-> **Attachment:** source.zip
+> **Connection: 52**.59.124.14:5024\*\* > **Attachment:** source.zip
 
 In this challenge, we were given a server-side file that is a Rust project and a Dockerfile inside of zip file. First let's see what the program do.
 

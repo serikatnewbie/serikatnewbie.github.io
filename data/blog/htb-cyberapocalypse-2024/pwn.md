@@ -3,7 +3,7 @@ title: HTB CyberApocalypse 2024 - Pwn (9/10 Solved)
 date: '2024-03-08'
 draft: false
 authors: ['itoid', 'zran']
-tags: ['Pwn']
+tags: ['Pwn', 'htb-cyberapocalypse-2024']
 summary: HTB CyberApocalypse 2024 Pwn writeup by itoid & zran (9/10)
 ---
 

@@ -32,6 +32,7 @@ const contestsData: ContestData[] = [
     name: 'Nullcon Berlin HackIM 2024 CTF',
     ctfPoints: 6323.0,
     ctftimeRating: 21.881,
+    writeupTag: 'nullcon-hackim-ctf-2024',
     year: 2024,
   },
   {

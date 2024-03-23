@@ -3,7 +3,7 @@ title: HTB CyberApocalypse 2024 - Forensics (9/10 Solved)
 date: '2024-03-08'
 draft: false
 authors: ['keii']
-tags: ['Forensics']
+tags: ['Forensics', 'htb-cyberapocalypse-2024']
 summary: HTB CyberApocalypse 2024 Forensics writeup by k.eii (9/10)
 ---
 
