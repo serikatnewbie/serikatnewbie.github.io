@@ -2,7 +2,6 @@
 title: nullcon HackIM CTF 2024, Berlin
 date: '2024-03-22'
 draft: false
-authors: ['']
 tags: ['Writeups']
 summary: nullcon HackIM CTF 2024, Berlin Writeup.
 ---
@@ -23,7 +22,7 @@ This is a Bonus Challenge
 
 ![chall-sc](https://hackmd.io/_uploads/ryT5ZhL06.png)
 
-> Flag: ENO{th1s_is_4n_eXample}
+Flag: `ENO{th1s_is_4n_eXample}`
 
 # Web
 
@@ -31,7 +30,7 @@ This is a Bonus Challenge
 
 ### ![chall-sc](https://hackmd.io/_uploads/rJ2pDjLRp.png)
 
-```php=
+```php
 <?php
 ini_set("error_reporting", 0);
 ini_set("short_open_tag", "Off");
@@ -79,9 +78,9 @@ To view the source code, click here.
 
 ### Solution
 
-?input=<?=file_get_contents('flag.php');
+**Payload:** `?input=<?=file_get_contents('flag.php');`
 
-> Flag: ENO{YummY_YummY_Falafel_Expl01tz}
+Flag: `ENO{YummY_YummY_Falafel_Expl01tz}`
 
 ## Bassy
 
@@ -89,7 +88,7 @@ To view the source code, click here.
 
 Theory: https://stackoverflow.com/questions/12598407/why-does-php-convert-a-string-with-the-letter-e-into-a-number
 
-> Other answers have already mentioned this, but the PHP manual has explicitly stated it now. PHP interprets any string containing an 'E' bounded by numbers as scientific notation (EXPONENT*DNUM: ({LNUM} {DNUM}) [eE][+-]?{LNUM}). As you can see, this interpretation is case-insensitive (E or e). Where this becomes a `gotcha` in weak type string comparisons var_dump("2E1" == "020"); // true 2E1 is really 2 * (10 ^ 1), and that works out to 20. Insert any other letter there and it will return the expected false. From the question "608E-4234" == "272E-3063" That works out to 608 \_ (10 ^ -4234) == 272 \* (10 ^ -3063) Neither number can be represented by PHP (as JvdBerg noted), so they are converted to 0
+> Other answers have already mentioned this, but the PHP manual has explicitly stated it now. PHP interprets any string containing an 'E' bounded by numbers as scientific notation (EXPONENT*DNUM: (\{LNUM} \{DNUM}) [eE][+-]?\{LNUM}). As you can see, this interpretation is case-insensitive (E or e). Where this becomes a `gotcha` in weak type string comparisons var_dump("2E1" == "020"); // true 2E1 is really 2 * (10 ^ 1), and that works out to 20. Insert any other letter there and it will return the expected false. From the question "608E-4234" == "272E-3063" That works out to 608 \_ (10 ^ -4234) == 272 \* (10 ^ -3063) Neither number can be represented by PHP (as JvdBerg noted), so they are converted to 0
 
 ### ![chall-sc](https://hackmd.io/_uploads/SJ83Ci8R6.png)
 
@@ -104,7 +103,7 @@ Lets try with: 1+ª. Input to Burpsuite Repeater:
 
 ### ![chall-sc](https://hackmd.io/_uploads/BkOZAsUCT.png)
 
-> Flag: ENO{B4sE_85_L0l_0KaY_1337}
+Flag: `ENO{B4sE_85_L0l_0KaY_1337}`
 
 ## Trafficking
 
@@ -146,13 +145,13 @@ The code requires us to create a custom header capable of passing the given para
 
 ![chall-sc](https://hackmd.io/_uploads/rJkC0ObCp.png)
 
-> Flag: ENO{OH_TH4T_W4S_T00_EAZZ1}
+Flag: `ENO{OH_TH4T_W4S_T00_EAZZ1}`
 
 ## The Fast Falafel Shop
 
 ### ![chall-sc](https://hackmd.io/_uploads/BJqAOjLRa.png)
 
-```php=
+```php
 <?php
                 $files = $_FILES["fileToUpload"];
                     $target_dir = "uploads/" . $files["name"];
@@ -194,7 +193,7 @@ The code requires us to create a custom header capable of passing the given para
 
 The file will first be moved to the public folder and then removed if the condition is not met. There is a race condition where the checkViruses function, which is computationally expensive, can be accessed before the file is deleted.
 
-> Flag: ENO{D0N'T_ST0R3_F1L3S_B3F0R3_VAL1DAT1NG_TH3M}
+Flag: `ENO{D0N'T_ST0R3_F1L3S_B3F0R3_VAL1DAT1NG_TH3M}`
 
 ## The Fast Falafel Shop 2
 
@@ -202,7 +201,7 @@ The file will first be moved to the public folder and then removed if the condit
 
 Objective: Obtain the flag in a cookie with the domain `shop`.
 
-```python=
+```python
     url = sys.argv[1]
 
     if not re.match(r"^https?:\/\/", url):
@@ -225,7 +224,7 @@ Objective: Obtain the flag in a cookie with the domain `shop`.
 
 The Docker hostname will be `shop`, so `http://shop` refers to localhost, and `secret.php` is the bot.
 
-```php=
+```php
 
 <?php
 if (isset($_POST["url"])) {
@@ -242,7 +241,7 @@ There was XSS in contest.php
 echo "<a href='$target_dir'>uploaded chall-sc!</a>";
 ```
 
-If the filename is '><script>alert(1)</script>x.png the output should be
+If the filename is `'><script>alert(1)</script>x.png` the output should be
 
 ```html
 <a href=""
@@ -282,7 +281,7 @@ Then the alert will be trigerred since there was no csrf protection and we can t
 
 ### ![chall-sc](https://hackmd.io/_uploads/S1hvYoLCp.png)
 
-```php=
+```php
 <?php
 ini_set("error_reporting", 0);
 
@@ -316,11 +315,11 @@ if(isset($path) && str_contains($path, "/var/www/html/static/")) {
 
 ### SOLUTION
 
-```php=
+```php
 php:/\\\\/filter/read=/var/www/html/static/resource=/var/www/html/flag.php
 ```
 
-> Flag: ENO{PhP_P4tH-Tr4vers4L_FuN!}
+Flag: `ENO{PhP_P4tH-Tr4vers4L_FuN!}`
 
 ## executy
 
@@ -348,7 +347,7 @@ With the following payload, we can create a trim function that ignores arbitrary
 
 ![chall-sc](https://hackmd.io/_uploads/HJjpzgI06.png)
 
-> Flag: ENO{BEWARE_OF_TERM1N4L_3SCAPE_SEQUENCES!}
+Flag: `ENO{BEWARE_OF_TERM1N4L_3SCAPE_SEQUENCES!}`
 
 # Pwn
 
@@ -425,7 +424,7 @@ io.interactive()
 
 ![chall-sc](https://hackmd.io/_uploads/SJ-0nD406.png)
 
-> Flag: ENO{W3LL_THAT_WA5_AN_3A5Y_0N3_1_GU355}
+Flag: `ENO{W3LL_THAT_WA5_AN_3A5Y_0N3_1_GU355}`
 
 ## junior_formatter
 
@@ -564,7 +563,7 @@ com()
 
 ![chall-sc](https://hackmd.io/_uploads/Sk1OXXr06.png)
 
-> Flag: ENO{N1C3_Y0U_G0T_TH15_0N3_T00_G00D_J0B!}
+Flag: `ENO{N1C3_Y0U_G0T_TH15_0N3_T00_G00D_J0B!}`
 
 ## Hangman
 
@@ -849,7 +848,7 @@ io.interactive()
 
 ### ![chall-sc](https://hackmd.io/_uploads/BJTu-QMAT.png)
 
-> Flag: ENO{HANG_0N_T3HR3_B0DY_1T5_0NLY_0FF_BY_0N3_3RR0R_W1TH_S0M3_LUCK!}
+Flag: `ENO{HANG_0N_T3HR3_B0DY_1T5_0NLY_0FF_BY_0N3_3RR0R_W1TH_S0M3_LUCK!}`
 
 ## SENIOR_formatter
 
@@ -1067,7 +1066,7 @@ com()
 
 ### ![chall-sc](https://hackmd.io/_uploads/rJgZ-HH06.png)
 
-> Flag: ENO{WA1T_WHAT_H0W_D1D_Y0U_F1ND_M3???}
+Flag: `ENO{WA1T_WHAT_H0W_D1D_Y0U_F1ND_M3???}`
 
 # Misc
 
@@ -1082,7 +1081,7 @@ Although there is an initial check, the command below will still be executed so 
 
 ### ![chall-sc](https://hackmd.io/_uploads/SJ9gExIAp.png)
 
-> Flag: ENO{0xCAT_BUT_H4PP1_THANK_Y0U!}
+Flag: `ENO{0xCAT_BUT_H4PP1_THANK_Y0U!}`
 
 ## Lost in Parity
 
@@ -1107,7 +1106,7 @@ for file in files:
 print(flag)
 ```
 
-> Flag: ENO{R41D1NG_F1L3S_4R3_W3?}
+Flag: `ENO{R41D1NG_F1L3S_4R3_W3?}`
 
 ## Itchy Route
 
@@ -1189,7 +1188,7 @@ I got the flag after a few minutes.
 
 ### ![chall-sc](https://hackmd.io/_uploads/HkpKQWLCp.png)
 
-> Flag: ENO{4NY_M0R3_QU35T10N5M4RK5_0C?N?}
+Flag: `ENO{4NY_M0R3_QU35T10N5M4RK5_0C?N?}`
 
 # Rev
 
@@ -1201,7 +1200,7 @@ Given a binary file named `revhell`. The first step i do is looking the disassem
 
 #### main
 
-```clike
+```c
 __int64 sub_401923()
 {
   __int64 result; // rax
@@ -1234,7 +1233,7 @@ The main function asks us for 44 bytes worth of input, including a newline. Then
 
 #### check input
 
-```clike
+```c
 __int64 __fastcall sub_4017E5(const char *a1)
 {
   __int64 result; // rax
@@ -1312,7 +1311,7 @@ print(xor(s1, s2).decode())
 
 ### ![chall-sc](https://hackmd.io/_uploads/r1OC5-U06.png)
 
-> Flag: ENO{h0pe_y0u_h4d_fun_extr4act1ng_my_secret}
+Flag: `ENO{h0pe_y0u_h4d_fun_extr4act1ng_my_secret}`
 
 ## CarryMe
 
@@ -1471,7 +1470,7 @@ for flag, hash in pool.imap_unordered(
 
 ### ![chall-sc](https://hackmd.io/_uploads/SJjACW80T.png)
 
-> Flag: ENO{N0W_THAT'5_50M3_N3XT_LVL_SBB}
+Flag: `ENO{N0W_THAT'5_50M3_N3XT_LVL_SBB}`
 
 ## cursedPower
 
@@ -1485,7 +1484,7 @@ After running GUI.ps1, we select the automatically decode mode and input the fil
 
 ### ![chall-sc](https://hackmd.io/_uploads/B1hGP1ICa.png)
 
-> Flag: ENO{H0p3fully_Y0ur_M1ND_D1D_G3t_scr3w3D}
+Flag: `ENO{H0p3fully_Y0ur_M1ND_D1D_G3t_scr3w3D}`
 
 # Crypto
 
@@ -1495,7 +1494,7 @@ After running GUI.ps1, we select the automatically decode mode and input the fil
 
 In this challenge, we were given a server-side file that is a Rust project and a Dockerfile inside of zip file. First let's see what the program do.
 
-```rust!
+```rust
 use std::io::Write;
 
 use aes_gcm::{
@@ -1546,7 +1545,7 @@ So what we will do is, send a 29-length input message, then receive the cipherte
 
 #### POC
 
-```python!
+```python
 from itertools import product
 
 from Crypto.Cipher import AES
@@ -1588,6 +1587,4 @@ for k in tqdm(product(range(0x100), repeat=3), total=0x100**3):
 
 ### ![chall-sc](https://hackmd.io/_uploads/BywY9iSCT.png)
 
-> Flag: ENO{otp_reuse_rethink_rewind}
-
-</div>
+Flag: `ENO{otp_reuse_rethink_rewind}`
