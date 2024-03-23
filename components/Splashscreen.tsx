@@ -61,7 +61,7 @@ const Splashscreen = () => {
         lineNodes.push(animatorNode)
       })
 
-      const animatorNode = prepareNode('♪ ' + title, titleRef.current)
+      const animatorNode = prepareNode('' + title, titleRef.current)
       lineNodes.push(animatorNode)
 
       lineNodes.forEach((node, index) => {
@@ -90,23 +90,23 @@ const Splashscreen = () => {
         Skip
       </button>
       <code className="absolute text-6xl font-extrabold sm:text-8xl text-white/25 top-4 left-4">
-        SEKAI{'{'}
+        {'SNI'}
       </code>
       <div className="">
         <div
           ref={lineContainerRef}
           className="text-xl leading-tight xl:leading-tight lg:leading-tight md:leading-tight sm:leading-tight xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl"
         >
-          <div>信じたものは、</div>
-          <div>都合のいい妄想を</div>
-          <div>繰り返し映し出す鏡。</div>
+          <div>Lets</div>
+          <div>Go To</div>
+          <div>Berlin</div>
         </div>
         <div className="mt-2" ref={titleRef}>
-          ♪ 初音ミクの消失 / cosMo@暴走P
+          Suntikan Bambang Berlin
         </div>
       </div>
       <code className="absolute text-6xl font-extrabold sm:text-8xl text-white/25 bottom-4 right-4">
-        {'}'}
+        {'SNI'}
       </code>
     </div>
   )
