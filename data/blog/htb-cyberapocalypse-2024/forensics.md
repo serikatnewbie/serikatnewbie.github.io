@@ -138,10 +138,14 @@ Register-ScheduledTask -TaskName "0r3d_1n_7h3_h34dqu4r73r5}" -Action $action -Tr
 
 It contains the 3rd flag, i assume that the 2nd and 1st flag is on the same captured data. i try to decode it as base64 but didnt got anything so i assume it was encrypted that the encryption result is aes look alike.
 so i will analyze the executable malware.
-https://www.decompiler.com/jar/37f6dfe81be74027b3039e21612f3966/aQ4caZ.exe
+
+Result: https://www.decompiler.com/jar/37f6dfe81be74027b3039e21612f3966/aQ4caZ.exe
+
 AES encrypted using:
+
 ![image](https://hackmd.io/_uploads/B108lcCTa.png)
-make the decryptor based on that encryption algorithm
+
+Make the decryptor based on that encryption algorithm
 
 ```python
 from Crypto.Protocol.KDF import PBKDF2
