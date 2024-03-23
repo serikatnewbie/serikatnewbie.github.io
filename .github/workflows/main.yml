@@ -72,6 +72,8 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: .next
+      - name: NPM
+        run: npm run build
 
   # Deployment job
   deploy:
