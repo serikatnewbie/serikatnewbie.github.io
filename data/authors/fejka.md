@@ -1,5 +1,5 @@
 ---
-name: fejka
+name: Fejka
 avatar: /static/images/avatar/player9.webp
 specialties: [Web]
 member: true
