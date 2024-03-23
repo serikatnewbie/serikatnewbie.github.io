@@ -1,6 +1,6 @@
 ---
-name: Project SEKAI
+name: Serikat Newbie Indonesia
 avatar: /static/images/avatar.png
 description: Default Post Author
-company: Project SEKAI
+company: Serikat Newbie Indonesia
 ---

