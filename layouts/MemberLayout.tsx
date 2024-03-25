@@ -10,7 +10,7 @@ const specialtyColors = {
   Reverse: 'yellow',
   Forensics: 'pink',
   Misc: 'amber',
-  OSINT: 'gray',
+  Osint: 'gray',
   Blockchain: 'cyan',
 }
 
