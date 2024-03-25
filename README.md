@@ -1,7 +1,6 @@
 # Serikat Newbie Indonesia
 
-Website of SNI, a CTF team.
+Ora CTF, yo sakau
 
-![Banner with logo](./public/static/images/twitter-card.png)
+![Banner with logo](./public/static/images/avatar.png)
 
-Based on [Tailwind Nextjs Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog).
