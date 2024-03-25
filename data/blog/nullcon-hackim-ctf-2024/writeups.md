@@ -1,5 +1,5 @@
 ---
-title: nullcon HackIM CTF 2024, Berlin
+title: Nullcon HackIM CTF 2024, Berlin
 date: '2024-03-22'
 draft: false
 tags: ['Web', 'Pwn', 'Misc', 'Crypto', 'nullcon-hackim-ctf-2024']
