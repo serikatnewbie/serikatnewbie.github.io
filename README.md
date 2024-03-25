@@ -1,6 +1,6 @@
-# sekai.team
+# Serikat Newbie Indonesia
 
-Website of Project SEKAI, a CTF team.
+Website of SNI, a CTF team.
 
 ![Banner with logo](./public/static/images/twitter-card.png)
 
