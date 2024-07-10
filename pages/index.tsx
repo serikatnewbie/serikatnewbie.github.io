@@ -53,7 +53,9 @@ export default function Home({ posts, members }: InferGetStaticPropsType<typeof 
             >
               {`We play every weekend to sharpen our knowledge and have fun at the same time! Currently, we are ranked 40th in the world on CTFTime, hold the 3rd position in the Indonesian region, and aim to be among the top 10 teams worldwide in CTF (CTFTime)!`}
               <br />
-              {`Contact us at serikatnewbie.id@gmail.com (business inquiries, membership requests, event invitation, etc.)`}
+              {`Contact us at serikatnewbie.id@gmail.com `}
+              <br />
+              {`(for business inquiries, membership requests, event invitation, etc.)`}
             </code>
           </p>
         </div>
