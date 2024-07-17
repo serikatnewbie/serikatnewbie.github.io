@@ -3,8 +3,8 @@ name: Rival
 avatar: /static/images/avatar/player10.webp
 specialties: [Web]
 member: true
-description: 'Web Exploiter from CCUG'
+description: 'Captain of Cyber Community Universitas Gunadarma'
 order: 10
 ---
 
-Web Exploiter from CCUG
+Captain of Cyber Community Universitas Gunadarma
