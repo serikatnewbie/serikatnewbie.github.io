@@ -107,7 +107,7 @@ Mari kita cek mitigasi yang ada di program tersebut dengan command `checksec`.
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 ```
-Challenge dari program ini sangat sederhana, terdapat `Buffer Overflow` vulnerability di fungsi `read(0LL, v1, 256LL)` jadi cukup melakukan Return-Oriented Programming (ROP) Chain `execve("/bin/sh", 0, 0)` dengan `Accumulator Register ($RAX) = 59` dengan instruksi-instruksi assembly yang ada di program tersebut untuk mendapatkan `Arbitrary Code Execution`.
+Challenge dari program ini sangat sederhana, terdapat `Buffer Overflow` vulnerability di fungsi `read(0LL, v1, 256LL)` jadi cukup buat Return-Oriented Programming (ROP) Chain `execve("/bin/sh", 0, 0)` dengan syarat`Accumulator Register ($RAX) = 59` dan memanfaatkan instruksi-instruksi assembly yang ada di program tersebut untuk mendapatkan `Arbitrary Code Execution`.
 
 #### POC
 ```python
