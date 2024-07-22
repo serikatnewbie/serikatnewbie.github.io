@@ -15,7 +15,7 @@ const contestsData: ContestData[] = [
     ctftimeId: 2396,
     name: 'ImaginaryCTF 2024',
     ctfPoints: 9208.0,
-    ctftimeRating: 0.0,
+    ctftimeRating: 35.852,
     year: 2024,
   },  
   {
