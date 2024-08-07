@@ -51,7 +51,7 @@ export default function Home({ posts, members }: InferGetStaticPropsType<typeof 
             <code
               aria-label={`Serikat Newbie Indonesia [SNI] is a CTF team with ${currentMembers} active members, and activeley played in weekend ctfs.`}
             >
-              {`We play every weekend to sharpen our knowledge and have fun at the same time! Currently, we are ranked 44th in the world on CTFTime, hold the 3rd position in the Indonesian region, and aim to be among the top 10 teams worldwide in CTF (CTFTime)!`}
+              {`We play every weekend to sharpen our knowledge and have fun at the same time! Currently, we are ranked 53rd in the world on CTFTime, hold the 3rd position in the Indonesian region, and aim to be among the top 10 teams worldwide in CTF (CTFTime)!`}
               <br />
               {`Contact us at serikatnewbie.id@gmail.com `}
               <br />
