@@ -7,4 +7,4 @@ description: 'Web Exploiter from Cyber Security IPB'
 order: 12
 ---
 
-Web Exploiter from Big Brain Kidz
+Web Exploiter on the Big Brain Kidz Team
