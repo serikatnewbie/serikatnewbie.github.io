@@ -11,11 +11,19 @@ export interface ContestData {
 
 const contestsData: ContestData[] = [
   {
+    place: 4,
+    ctftimeId: 2485,
+    name: 'SunshineCTF 2024',
+    ctfPoints: 7732.0,
+    ctftimeRating: 45.870,
+    year: 2024,
+  },  
+  {
     place: 6,
     ctftimeId: 2450,
     name: 'jailCTF 2024',
     ctfPoints: 12691.0,
-    ctftimeRating: 0.0,
+    ctftimeRating: 17.008,
     year: 2024,
   },  
   {
